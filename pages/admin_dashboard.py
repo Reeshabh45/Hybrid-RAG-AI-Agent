@@ -20,7 +20,7 @@ conn = sqlite3.connect(
 )
 
 df = pd.read_sql(
-    "SELECT * FROM rag_queries",
+    "SELECT * FROM rag_metrics",
     conn
 )
 
@@ -37,14 +37,23 @@ st.dataframe(
     ]
 )
 
+if df.empty:
+    st.warning("No query logs found in database.")
+    st.stop()
+
 selected_id = st.selectbox(
     "Query",
-    df["id"]
+    df["id"].tolist()
 )
 
-row = df[
-    df["id"] == selected_id
-].iloc[0]
+filtered_df = df[df["id"] == selected_id]
+
+if filtered_df.empty:
+    st.error("Selected query not found.")
+    st.stop()
+
+row = filtered_df.iloc[0]
+
 
 st.write("Question")
 st.code(row["question"])

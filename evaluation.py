@@ -241,22 +241,29 @@ async def evaluate_with_groq_judge(
     try:
         result = json.loads(content)
 
-        return {
-            "context_relevance": result.get("context_relevance", 0),
-            "faithfulness": result.get("faithfulness", 0),
-            "answer_relevance": result.get("answer_relevance", 0),
-            "hallucination_rate": result.get("hallucination_rate", 0),
-            "reasoning": result.get("reasoning", ""),
-            "evaluation_type": "LLAMA_JUDGE"
-        }
-
+        return EvaluationMetrics(
+            context_relevance=float(result.get("context_relevance", 0)),
+            faithfulness=float(result.get("faithfulness", 0)),
+            answer_relevance=float(result.get("answer_relevance", 0)),
+            hallucination_rate=float(result.get("hallucination_rate", 0)),
+            reasoning=str(result.get("reasoning", "")),
+            evaluation_type="LLAMA_JUDGE"
+        )
     except Exception as e:
 
-        return {
-            "context_relevance": 0,
-            "faithfulness": 0,
-            "answer_relevance": 0,
-            "hallucination_rate": 0,
-            "reasoning": f"JSON parse failed: {e}",
-            "evaluation_type": "custom"
-        }
+        return EvaluationMetrics(
+            context_relevance=float(result.get("context_relevance", 0)),
+            faithfulness=float(result.get("faithfulness", 0)),
+            answer_relevance=float(result.get("answer_relevance", 0)),
+            hallucination_rate=float(result.get("hallucination_rate", 0)),
+            reasoning=str(result.get("reasoning", "")),
+            evaluation_type="LLAMA_JUDGE"
+        )
+# {
+#             "context_relevance": result.get("context_relevance", 0),
+#             "faithfulness": result.get("faithfulness", 0),
+#             "answer_relevance": result.get("answer_relevance", 0),
+#             "hallucination_rate": result.get("hallucination_rate", 0),
+#             "reasoning": result.get("reasoning", ""),
+#             "evaluation_type": "LLAMA_JUDGE"
+#         }

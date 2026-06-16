@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 def init_db():
 
@@ -7,7 +8,7 @@ def init_db():
     cur = conn.cursor()
 
     cur.execute("""
-    CREATE TABLE IF NOT EXISTS rag_queries (
+    CREATE TABLE IF NOT EXISTS rag_metrics (
 
     id INTEGER PRIMARY KEY AUTOINCREMENT,
 
@@ -44,8 +45,7 @@ def init_db():
     conn.commit()
     conn.close()
 
-
-import sqlite3
+init_db()
 
 def save_query_metrics(
     question,
@@ -67,12 +67,23 @@ def save_query_metrics(
     conn = sqlite3.connect(
         "rag_metrics.db"
     )
+    
+
+    contexts_json = json.dumps(
+        contexts,
+        ensure_ascii=False
+    )
+
+    sources_json = json.dumps(
+        sources,
+        ensure_ascii=False
+    )
 
     cur = conn.cursor()
 
     cur.execute(
     """
-    INSERT INTO rag_queries (
+    INSERT INTO rag_metrics (
 
         question,
         answer,
