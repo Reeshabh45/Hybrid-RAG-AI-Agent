@@ -300,27 +300,6 @@ Provides:
 - [ ] Kubernetes Deployment
 - [ ] CI/CD Pipeline
 
----
-
-## 📸 Screenshots
-
-### Upload Interface
-
-(Add screenshot)
-
-### Retrieval Inspector
-
-(Add screenshot)
-
-### Evaluation Dashboard
-
-(Add screenshot)
-
-### Hybrid Search Results
-
-(Add screenshot)
-
----
 
 ## 👨‍💻 Author
 
