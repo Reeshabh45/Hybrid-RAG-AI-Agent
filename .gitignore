@@ -1,31 +1,11 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Virtual Env
-rag_env/
-venv/
-.env
-
-# Streamlit
-.streamlit/
-
-# Database
-*.db
-*.sqlite3
-
-# Uploaded PDFs
+qdrant_storage/
 uploads/
-
-# Models
+*.db
+__pycache__/
+.env
 models/
+streamlit_app copy.py
+inspect_retrieval.py
 
-# IDE
-.vscode/
-.idea/
 
-# OS
-.DS_Store
-Thumbs.db
+
